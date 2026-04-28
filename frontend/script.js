@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000";
+const API_URL = "https://prana-backend-jkri.onrender.com";
 let adminPassInput = "";
 
 let guestCount = 1;
