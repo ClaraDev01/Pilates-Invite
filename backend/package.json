@@ -1,0 +1,23 @@
+{
+  "name": "prana-studios-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend do convite de inauguração Prana Studios",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/pg": "^8.20.0",
+    "nodemon": "^3.0.3"
+  }
+}

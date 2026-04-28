@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prana Studios — Inauguração</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Dancing+Script:wght@600&family=Josefin+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- INVITE CARD -->
+        <div class="invite-card">
+
+            <!-- Logo -->
+            <div class="logo-area">
+                <img src="imagem/logo.png" alt="Logo Prana">
+                <div class="text">
+                    <div class="invite-subtitle">Você é nosso convidado para a</div>
+                    <div class="invite-title">
+                        <span class="deco">✦</span>
+                        INAUGURAÇÃO
+                        <span class="deco">✦</span>
+                    </div>
+                    <div class="invite-script">de um novo espaço<br>para cuidar de você.</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-item">
+                    <div class="info-icon">📅</div>
+                    <div class="info-label">Data</div>
+                    <div class="info-value">2 de Maio</div>
+                    <div class="info-detail">(sábado)</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕙</div>
+                    <div class="info-label">Horário</div>
+                    <div class="info-value">13h00</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-label">Local</div>
+                    <div class="info-value" style="font-size:11px;">Rua Araguaia, 1763</div>
+                    <div class="info-detail">Freguesia Jacarepaguá<br><a href="https://www.google.com/maps/search/?api=1&query=Rua+Araguaia+1763+Freguesia+Jacarepagua+Rio+de+Janeiro+22745-271" target="_blank">
+                        Ver localização
+                    </a></div>
+                </div>
+            </div>
+
+            <div class="invite-closing">Venha celebrar</div>
+            <div class="invite-closing-sub">com a gente este novo começo!</div>
+
+            <!-- PHOTOS -->
+            <div class="photos-section">
+                <div class="photos-label">Conheça o espaço</div>
+                <div class="photos-grid">
+                    <div class="photo-wrap">
+                        <div class="photo-slot">
+                            <div><img src="imagem/WhatsApp Image 2026-04-27 at 20.10.53.jpeg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="photo-wrap">
+                        <div class="photo-slot">
+                            <div><img src="imagem/instrutora.jpeg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="photo-wrap">
+                        <div class="photo-slot">
+                            <div><img src="imagem/espaço.jpeg" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RSVP -->
+        <div class="rsvp-section">
+            <div class="rsvp-title">Confirmar Presença</div>
+
+            <div id="rsvpForm">
+                <div id="guestFields">
+                    <!-- Primeira pessoa (não pode ser removida) -->
+                    <div class="guest-block" data-index="0">
+                        <div class="guest-block-label">Pessoa 1</div>
+                        <div class="form-group">
+                            <label class="form-label">Nome completo</label>
+                            <input class="form-input guest-name" type="text" placeholder="Nome Completo">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-add" onclick="addGuest()">+ Adicionar outra pessoa</button>
+                <button class="btn-confirm" onclick="confirmRSVP()">✓ Confirmar presença</button>
+            </div>
+
+            <div class="success-msg" id="successMsg">
+                <div class="check">💜</div>
+                <div class="success-title" id="successTitle">Presença confirmada!</div>
+                <div class="success-sub">Te esperamos no dia 2 de Maio às 13h00 🙏</div>
+            </div>
+        </div>
+
+        <!-- ADMIN TOGGLE -->
+        <div class="admin-toggle" onclick="toggleAdmin()">🧘🏻‍♀️⚙ painel da organizadora</div>
+
+        <!-- ADMIN PANEL -->
+        <div class="admin-panel" id="adminPanel">
+            <div id="passGate">
+                <div class="pass-row">
+                    <input class="pass-input" type="password" id="passInput" placeholder="Senha do painel"
+                        onkeydown="if(event.key==='Enter') checkPass()">
+                    <button class="btn-pass" onclick="checkPass()">Entrar</button>
+                </div>
+                <div class="pass-error" id="passError">Senha incorreta</div>
+            </div>
+
+            <div id="adminContent" style="display:none">
+                <div class="admin-header">
+                    <div class="admin-title">Confirmações recebidas</div>
+                    <button class="clear-btn" onclick="clearAll()">limpar tudo</button>
+                    <button class="close-btn" onclick="closeAdmin()">✕</button>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-card">
+                        <div class="stat-num" id="statPessoas">0</div>
+                        <div class="stat-lbl">Pessoas</div>
+                    </div>
+                </div>
+
+                <div class="guest-list" id="guestList"></div>
+
+                <button class="btn-export" onclick="exportList()">↓ Exportar lista (.txt)</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
