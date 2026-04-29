@@ -109,27 +109,29 @@ async function checkPass() {
   const input = document.getElementById("passInput");
   const error = document.getElementById("passError");
   const btn = document.querySelector(".btn-pass");
-
+ 
   error.classList.remove("show");
   input.classList.remove("error");
-
+ 
   btn.textContent = "Entrando...";
   btn.disabled = true;
-
+ 
   try {
     const res = await fetch(`${API_URL}/confirmados`, {
       headers: { "x-admin-pass": input.value },
     });
-
+ 
     if (!res.ok) throw new Error();
-
+ 
     const data = await res.json();
 
+    adminPassInput = input.value;
+ 
     document.getElementById("passGate").style.display = "none";
     document.getElementById("adminContent").style.display = "block";
-
+ 
     renderAdmin(data);
-
+ 
   } catch {
     error.classList.add("show");
     input.classList.add("error");
