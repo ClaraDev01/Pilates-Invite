@@ -108,6 +108,10 @@ function toggleAdmin() {
 async function checkPass() {
   adminPassInput = document.getElementById("passInput").value;
 
+  const btn = document.querySelector(".btn-pass");
+  btn.textContent = "Entrando...";
+  btn.disabled = true;
+
   try {
     const res = await fetch(`${API_URL}/confirmados`, {
       headers: { "x-admin-pass": adminPassInput },
@@ -115,14 +119,18 @@ async function checkPass() {
 
     if (!res.ok) throw new Error();
 
-    // senha correta
+    const data = await res.json();
+
     document.getElementById("passGate").style.display = "none";
     document.getElementById("adminContent").style.display = "block";
-    renderAdmin();
+
+    renderAdmin(data); 
 
   } catch {
-    // senha errada
     document.getElementById("passError").style.display = "block";
+  } finally {
+    btn.textContent = "Entrar";
+    btn.disabled = false;
   }
 }
 
