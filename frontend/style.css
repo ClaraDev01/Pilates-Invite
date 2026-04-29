@@ -29,25 +29,31 @@ body {
 }
 
 .logo-area {
-    width: 100%;
     display: flex;
     align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
 }
 
 .logo-area img {
-    width: 100px;
-    margin-left: -14px;
+    width: clamp(60px, 22vw, 100px);
+    height: auto;
+
+    margin-right: -6px;
+    margin-right: -2px;
+    margin-left: -10px;
+
+    flex-shrink: 1;
 }
 
 .text {
-    padding: 2px;
-    margin-bottom: 20px;
-    align-items: center;
+    flex: 1;
+    min-width: 0;
 }
 
 .invite-subtitle {
     text-align: center;
-    font-size: 10px;
+    font-size: clamp(8px, 2.5vw, 10px);
     letter-spacing: 3px;
     color: #8a6db0;
     text-transform: uppercase;
@@ -57,27 +63,27 @@ body {
 .invite-title {
     text-align: center;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 23px;
+    font-size: clamp(14px, 0vw, 30px);
     font-weight: 600;
     color: #4a2d7a;
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin: 4px 0 2px;
+    margin: 2px 0 1px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 1px;
 }
 
 .invite-title span.deco {
     color: #9b7dbc;
-    font-size: 20px;
+    font-size: clamp(12px, 3vw, 18px);
 }
 
 .invite-script {
     text-align: center;
     font-family: 'Dancing Script', cursive;
-    font-size: 22px;
+    font-size: clamp(14px, 3.5vw, 22px);
     color: #5a7a4a;
     line-height: 1.4;
     margin: 6px 0 12px;
@@ -105,8 +111,8 @@ body {
 
 .info-box {
     border: 1.5px solid rgba(120, 90, 160, 0.35);
-    border-radius: 14px;
-    padding: 14px 8px;
+    border-radius: 17px;
+    padding: 12px 5px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     background: rgba(255, 255, 255, 0.5);
@@ -115,8 +121,9 @@ body {
 
 .info-item {
     text-align: center;
-    padding: 0 8px;
+    padding: 6px 8px;
     border-right: 1px solid rgba(120, 90, 160, 0.25);
+
 }
 
 .info-item:last-child {
@@ -134,6 +141,7 @@ body {
     color: #9b7dbc;
     text-transform: uppercase;
     font-weight: 600;
+    margin: 8px;
 }
 
 .info-value {
@@ -146,6 +154,7 @@ body {
 .info-detail {
     font-size: 10px;
     color: #888;
+    margin: 2px;
 }
 
 .invite-closing {
@@ -565,6 +574,4 @@ button {
     font-size: 16px;
 }
 
-.close-btn{
-
-}
+.close-btn {}
