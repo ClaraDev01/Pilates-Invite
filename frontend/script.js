@@ -135,45 +135,43 @@ async function checkPass() {
 }
 
 
-async function renderAdmin() {
+async function renderAdmin(data = null) {
   const list = document.getElementById("guestList");
-  list.innerHTML = '<div class="empty-list">Carregando... ✨</div>';
 
-  try {
+  if (!data) {
+    list.innerHTML = '<div class="empty-list">Carregando... ✨</div>';
+
     const res = await fetch(`${API_URL}/confirmados`, {
       headers: { "x-admin-pass": adminPassInput },
     });
 
-    if (!res.ok) throw new Error("Não autorizado");
-
-    const data = await res.json();
-    document.getElementById("statPessoas").textContent = data.length;
-
-    if (data.length === 0) {
-      list.innerHTML = '<div class="empty-list">Nenhuma confirmação ainda ✨</div>';
-      return;
-    }
-
-    list.innerHTML = data.map((g) => {
-      const date = new Date(g.created_at).toLocaleDateString("pt-BR");
-      const time = new Date(g.created_at).toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      return `
-        <div class="guest-item">
-  <div>
-    <div class="guest-name">${g.name}</div>
-    <div class="guest-meta">${date} às ${time}</div>
-  </div>
-  <button onclick="deleteGuest(${g.id})">ⓧ</button>
-</div>
-      `;
-    }).join("");
-
-  } catch (e) {
-    list.innerHTML = '<div class="empty-list">Erro ao carregar lista 😕</div>';
+    data = await res.json();
   }
+
+  document.getElementById("statPessoas").textContent = data.length;
+
+  if (data.length === 0) {
+    list.innerHTML = '<div class="empty-list">Nenhuma confirmação ainda ✨</div>';
+    return;
+  }
+
+  list.innerHTML = data.map((g) => {
+    const date = new Date(g.created_at).toLocaleDateString("pt-BR");
+    const time = new Date(g.created_at).toLocaleTimeString("pt-BR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return `
+      <div class="guest-item">
+        <div>
+          <div class="guest-name">${g.name}</div>
+          <div class="guest-meta">${date} às ${time}</div>
+        </div>
+        <button onclick="deleteGuest(${g.id})">ⓧ</button>
+      </div>
+    `;
+  }).join("");
 }
 
 async function clearAll() {
