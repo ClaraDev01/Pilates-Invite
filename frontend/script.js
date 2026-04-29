@@ -106,15 +106,19 @@ function toggleAdmin() {
 }
 
 async function checkPass() {
-  adminPassInput = document.getElementById("passInput").value;
-
+  const input = document.getElementById("passInput");
+  const error = document.getElementById("passError");
   const btn = document.querySelector(".btn-pass");
+
+  error.classList.remove("show");
+  input.classList.remove("error");
+
   btn.textContent = "Entrando...";
   btn.disabled = true;
 
   try {
     const res = await fetch(`${API_URL}/confirmados`, {
-      headers: { "x-admin-pass": adminPassInput },
+      headers: { "x-admin-pass": input.value },
     });
 
     if (!res.ok) throw new Error();
@@ -124,10 +128,13 @@ async function checkPass() {
     document.getElementById("passGate").style.display = "none";
     document.getElementById("adminContent").style.display = "block";
 
-    renderAdmin(data); 
+    renderAdmin(data);
 
   } catch {
-    document.getElementById("passError").style.display = "block";
+    error.classList.add("show");
+    input.classList.add("error");
+    input.value = "";
+    input.focus();
   } finally {
     btn.textContent = "Entrar";
     btn.disabled = false;
@@ -241,4 +248,9 @@ function closeAdmin() {
   document.getElementById("adminContent").style.display = "none";
   document.getElementById("passInput").value = "";
   document.getElementById("passError").style.display = "none";
+  document.getElementById("passInput").addEventListener("input", () => {
+  passInput.classList.remove("error");
+  passError.classList.remove("show");
+});
+  
 }
